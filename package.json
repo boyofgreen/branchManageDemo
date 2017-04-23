@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
+    "react-autosuggest": "^9.0.1",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1"
   },

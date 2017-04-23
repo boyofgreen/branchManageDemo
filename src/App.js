@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css';
+import BuildSearch from './BuildSearch.js'
 import {
   BrowserRouter as Router,
   Route,
@@ -51,7 +52,7 @@ class Home extends React.Component {
               </div>
             )
         }
-        // Otherwise show message
+        // Otherwise show pin
         else{
           return (
             <div>
@@ -70,7 +71,7 @@ class Home extends React.Component {
   </li>
 )*/
 
-// Sample branch data
+// Sample branch search data
 const BranchSearch = [
   {name: "branch 1", id:1}, {name: "branch 2", id:2},
   {name: "branch 3", id:3}, {name: "branch 4", id:4},
@@ -80,7 +81,7 @@ const BranchSearch = [
   {name: "branch 11", id:11}, {name: "branch 12", id:12}
 ];
 
-
+// Component: Search results - Render search results
 const SearchResults = () => (
   <ul className="searchResults">
     {BranchSearch.map(i => (
@@ -93,6 +94,7 @@ const SearchResults = () => (
   </ul>
 )
 
+// Component: Search Details
 const Details = () =>{
  // Home.showPin()
   return (
@@ -113,6 +115,7 @@ const Details = () =>{
 )
 }
 
+// Component: Search
 const Search = ({ match }) => (
   <div className="searchStart">
     <h2>Search for Branch to Watch:</h2>
@@ -130,6 +133,7 @@ const Search = ({ match }) => (
 
 
 
+// Common header and routing logic
 const BuildManager = () => (
   <Router>
     <div>
@@ -141,7 +145,7 @@ const BuildManager = () => (
 
       <div className="buildApp">
         <Route exact path="/" component={Home} showPin="false" />
-        <Route path="/search" component={Search}/>
+        <Route path="/search" component={BuildSearch}/>
         <Route path="/details" component={Details}/>
         <Route path="/home" component={HomePin}/>
       </div>
@@ -149,4 +153,5 @@ const BuildManager = () => (
   </Router>
 )
 
+// export the build manager Component
 export default BuildManager
