@@ -134,7 +134,7 @@ const Search = ({ match }) => (
 
 
 // Common header and routing logic
-// **ADDED BuildSearch Component from https://github.com/moroshko/react-autosuggest**
+// **ADDED BuildSearch Component from https://github.com/moroshko/react-autosuggest  **
 // **To use original search replace /search route below with just Search**
 const BuildManager = () => (
   <Router>
