@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 
 
-
+// Render a home pin
 const HomePin = (props) =>(
     <div>
       <h2>Branches you are watching:</h2>
@@ -18,42 +18,48 @@ const HomePin = (props) =>(
 )
 
 
-  class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {showPin: false};
-  }
-  showPin(){
-    this.setState({showPin: true})
-  }
-  render() {
-if(this.state.showPin === false){
-  return  (
-  <div>
-    
-    <h2>Branches you are watching:</h2>
-    
-    <ul className="branchWatch">
-        
-              <li className="empty">
-      <p>you have no branches tracking</p>
-      <Link to={`/search`}>
-          watch a branch
-        </Link>
-    
-    </li> 
- </ul>
-  </div>
+class Home extends React.Component {
+    // Home consturctor
+    constructor(props) {
+        super(props);
+        this.state = {showPin: false};
+    }
+  
+    // Show the pinned build
+    showPin(){
+        this.setState({showPin: true})
+    }
+  
+    // Render the HTML view for the Home component
+    render() {
+        // If not showing a Pin
+        if(this.state.showPin === false){
+            return  (
+              <div>
+                
+                <h2>Branches you are watching:</h2>
+                
+                <ul className="branchWatch">
+                    
+                    <li className="empty">
+                        <p>you have no branches tracking</p>
+                        <Link to={`/search`}>
+                            watch a branch
+                            </Link>
+                    </li> 
+                </ul>
+              </div>
+            )
+        }
+        // Otherwise show message
+        else{
+          return (
+            <div>
+              <li>showing a pin</li>
+            </div>
+          )
 
-)
-}else{
-  return (
-    <div>
-      <li>showing a pin</li>
-    </div>
-  )
-
-}
+    }
 }
   }
 
@@ -64,14 +70,17 @@ if(this.state.showPin === false){
   </li>
 )*/
 
+// Sample branch data
 const BranchSearch = [
   {name: "branch 1", id:1}, {name: "branch 2", id:2},
-   {name: "branch 3", id:3}, {name: "branch 4", id:4},
-    {name: "branch 5", id:5}, {name: "branch 6", id:6},
-    {name: "branch 7", id:7}, {name: "branch 8", id:8},
-    {name: "branch 9", id:9}, {name: "branch 10", id:10},
-    {name: "branch 11", id:11}, {name: "branch 12", id:12}
+  {name: "branch 3", id:3}, {name: "branch 4", id:4},
+  {name: "branch 5", id:5}, {name: "branch 6", id:6},
+  {name: "branch 7", id:7}, {name: "branch 8", id:8},
+  {name: "branch 9", id:9}, {name: "branch 10", id:10},
+  {name: "branch 11", id:11}, {name: "branch 12", id:12}
 ];
+
+
 const SearchResults = () => (
   <ul className="searchResults">
     {BranchSearch.map(i => (
@@ -108,18 +117,16 @@ const Search = ({ match }) => (
   <div className="searchStart">
     <h2>Search for Branch to Watch:</h2>
     <div className="searchBox">
-          <input placeholder="enter branch search term" type="text"></input>
-          <Link to={`${match.url}/results`} className="myButton">
+            <input placeholder="enter branch search term" type="text"></input>
+            <Link to={`${match.url}/results`} className="myButton">
                 search
-              </Link>
+            </Link>
       </div>
     <div id="searchResults">
       <Route path={`${match.url}/:topicId`} component={SearchResults}/>
     </div>
   </div>
 )
-
-
 
 
 
