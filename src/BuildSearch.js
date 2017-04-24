@@ -1,6 +1,6 @@
-import Autosuggest from 'react-autosuggest'     // This component provides accessible autosuggest functionality
+import Autosuggest from 'react-autosuggest'     // This component provides accessible autosuggest functionality https://github.com/moroshko/react-autosuggest
 import React from 'react'                       // General React support
-import {Link} from 'react-router-dom'             // Need this to support main app container Links
+import {Link} from 'react-router-dom'           // Need this to support main app container Links
 
 // Sample branch search data
 const BranchSearch = [
@@ -28,23 +28,17 @@ const getSuggestionValue = suggestion => suggestion.buildNumber;
 const renderSuggestion = suggestion => (
   <div>
     <div>
-    <h3>RSMAIN</h3>
     <p>{suggestion.buildNumber}</p>
     <h4>Active Branch Count: 3</h4>
-    <ul className="branchInfo">
-      <li><h5>Execution Status:</h5> FAILED</li>
-      <li><h5>Branch Debt:</h5> 0</li>
-      <li><h5>Bugs:</h5> 29</li>
-      <li><h5>SelfHost:</h5> 203/200</li>
-    </ul>
         <Link to={`/home`} >
-          Pin Branch to Home
+          <img src="/images/pin.png"/>
         </Link>
   </div>
   </div>
 );
 
 // Controlling the theme of the searchBox control
+// TODO: move to .css file
 const theme = {
   container: {
     position: 'relative'
@@ -100,6 +94,17 @@ const theme = {
   }
 }
 
+// This component will show the results after autosuggest goes away
+class SearchResults extends React.Component {
+  constructor() {
+        super();
+
+        this.state = {
+          results: []
+        };
+    }
+}
+
 // Using AutoSuggest Search Component
 export default class BuildSearch extends React.Component {
   constructor() {
@@ -116,10 +121,13 @@ export default class BuildSearch extends React.Component {
     };
   }
 
-  onChange = (event, { newValue }) => {
+  onChange = (event, { newValue, method }) => {
     this.setState({
       value: newValue
     });
+
+
+
   };
 
   // Autosuggest will call this function every time you need to update suggestions.
